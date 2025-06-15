@@ -56,3 +56,10 @@
   padding: 2px;
   border-radius: 50%;
 }
+
+@media (max-width: 1050px) {
+  .explore-menu-test {
+    max-width: 100%;
+    font-size: 14px;
+  }
+}

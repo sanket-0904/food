@@ -14,8 +14,27 @@ const storeContentProvider = (props) => {
     }
   };
 
-  const removefromcart = (itemid) => {
-    setcartitems((prev) => ({ ...prev, [itemid]: prev[itemid] - 1 }));
+  function removefromcart(itemid) {
+    setcartitems((prev) => {
+      if (prev[itemid] > 1) {
+        return { ...prev, [itemid]: prev[itemid] - 1 };
+      } else {
+        const updatedCart = { ...prev };
+        delete updatedCart[itemid];
+        return updatedCart;
+      }
+    });
+  }
+
+  const getTotal = () => {
+    let total = 0;
+    for (const itemId in cartitems) {
+      const itemInfo = food_list.find((item) => item._id === itemId);
+      if (itemInfo) {
+        total += itemInfo.price * cartitems[itemId];
+      }
+    }
+    return total;
   };
 
   useEffect(() => {
@@ -28,6 +47,7 @@ const storeContentProvider = (props) => {
     setcartitems,
     addtocart,
     removefromcart,
+    getTotal,
   };
   return (
     <storeContext.Provider value={contextValue}>

@@ -14,17 +14,15 @@ const storeContentProvider = (props) => {
     }
   };
 
-  function removefromcart(itemid) {
-    setcartitems((prev) => {
-      if (prev[itemid] > 1) {
-        return { ...prev, [itemid]: prev[itemid] - 1 };
-      } else {
+  const removefromcart = (itemid) => {
+    if (cartitems[itemid]) {
+      setcartitems((prev) => {
         const updatedCart = { ...prev };
         delete updatedCart[itemid];
         return updatedCart;
-      }
-    });
-  }
+      });
+    }
+  };
 
   const getTotal = () => {
     let total = 0;

@@ -3,7 +3,7 @@ import "./Cart.css";
 import { storeContext } from "../../Context/Storecontext";
 
 const Cart = () => {
-  const { cartitems, food_list, removeFromcart, getTotal } =
+  const { cartitems, food_list, removefromcart, getTotal } =
     useContext(storeContext);
 
   return (
@@ -31,7 +31,7 @@ const Cart = () => {
                     <p>{cartitems[item._id]}</p>
                     <p>{"$" + item.price * cartitems[item._id]}</p>
                     <p
-                      onClick={() => removeFromcart(item._id)}
+                      onClick={() => removefromcart(item._id)}
                       className="cross"
                     >
                       x
